@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <script
+    src="https://kit.fontawesome.com/391827d54c.js"
+    crossorigin="anonymous"
+  ></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <link rel="icon" href="./img/netflixlogo.0.0.1466448626-removebg-preview.png">
+    <style>
+        ::-webkit-scrollbar {
+            background-color: #444;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #555;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Bebas Neue', cursive;
+            color: white;
+        }
+
+        body {
+            background: url(./img/Landing\ Page\ BG);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .container {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        nav {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 50px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: black;
+            z-index: 10;
+        }
+
+        .left img {
+            width: 120px;
+        }
+
+        .right img {
+            border-radius: 2px;
+            width: 35px;
+        }
+
+        .movie {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .movieImg {
+            width: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("./img/banner.jpg");
+            height: 450px;
+            position: relative;
+        }
+
+        .movieName {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            bottom: 10px;
+            left: 20px;
+        }
+
+        .movieName h1 {
+            font-size: 65px;
+            width: 250px;
+            text-align: center;
+            line-height: 55px;
+            height: 140px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .btn {
+            display: flex;
+            width: 250px;
+            justify-content: space-between;
+        }
+
+        .btn button {
+            width: 49%;
+        }
+
+        .btn button {
+            background-color: gray;
+            color: rgb(255, 255, 255);
+            font-weight: bolder;
+            padding: 5px;
+            outline: none;
+            border: none;
+        }
+
+        .btn button:nth-of-type(1) {
+            background-color: white;
+            color: black;
+            font-weight: bolder;
+            padding: 5px;
+            border-radius: 5px;
+            outline: none;
+            border: none;
+        }
+
+        .btn button:nth-of-type(1) i {
+            color: black;
+        }
+
+        .moviesDesc {
+            width: 300px;
+            padding: 10px 0;
+        }
+
+        .first {
+            width: 90%;
+            margin: 50px auto 0;
+        }
+
+        div.ex1 {
+            border-radius: 5px;
+            width: 100%;
+            overflow-x: scroll;
+            display: flex;
+        }
+        .ex1::-webkit-scrollbar {
+    display: none;
+}
+
+.ex1 {
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+}
+
+        .ex1 div img {
+            width: 220px;
+            height: 150px;
+            object-fit: cover;
+            margin-right: 5px;
+            /* border-radius: 5px; */
+        }
+
+        .ex1 div {
+            position: relative;
+        }
+
+        .first h1 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .ex1 div .heart {
+            position: absolute;
+            padding: 10px;
+            border-radius: 50%;
+            top: 8px;
+            right: 10px;
+            outline: none;
+            border: none;
+            background-color: rgba(49, 46, 46, 0.4);
+            font-size: 13px;
+        }
+
+        .ex1 div .heart:hover {
+            /* border-radius: 30%; */
+            border: none;
+            background-color: rgba(97, 97, 97, 0.7);
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .copyright {
+            display: flex;
+            justify-content: center;
+            padding: 10px 5px;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        .copyright-text {
+        font-size: 14px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+      }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* -------- */
+
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-container .search {
+            transition: all 1s;
+            z-index: 4;
+            position: relative;
+            display: inline-block;
+            height: 30px;
+            width: 50px;
+            vertical-align: middle;
+            right: -55px;
+        }
+
+        .search-container .search:hover {
+            cursor: pointer;
+        }
+
+        .search-container .search::before {
+            content: "";
+            position: absolute;
+            top: 22px;
+            right: 0;
+            bottom: 0;
+            left: 10px;
+            width: 12px;
+            height: 2px;
+            background: #ccc;
+            transform: rotate(45deg);
+            transition: all .5s;
+        }
+
+        .search-container .search::after {
+            content: "";
+            position: absolute;
+            top: 8px;
+            right: 0;
+            bottom: 0;
+            left: 0px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            transition: all .5s;
+        }
+
+        .search-container input {
+            width: 50px;
+            height: 30px;
+            outline: none;
+            border-bottom: 1px solid #ccc;
+            color: #ccc;
+            padding: 0;
+            border-top: 0;
+            border-right: 0;
+            border-left: 0;
+            transition: all 1s;
+            opacity: 0;
+            z-index: 5;
+            font-weight: bolder;
+            letter-spacing: 0.1em;
+            box-sizing: border-box;
+        }
+
+        .search-container input:hover {
+            cursor: pointer;
+        }
+
+        .search-container.active input {
+            width: 300px;
+            opacity: 1;
+            cursor: text;
+            padding: 0 0 0 50px;
+        }
+
+        .search-container .close {
+            transition: all 1s;
+            z-index: 4;
+            position: relative;
+            display: inline-block;
+            height: 50px;
+            width: 50px;
+            vertical-align: middle;
+            right: 55px;
+            visibility: hidden;
+        }
+
+
+        .search-container input::placeholder {
+            color: #898989;
+            opacity: 0.5;
+            font-weight: bolder;
+        }
+
+        .search-container .input-box {
+            vertical-align: middle;
+            display: inline-block;
+        }
+        .footer {
+        padding: 50px 15% 10px;
+        border-top: 6px solid #333;
+        color: #777;
+        background-color: #0c0c0c;
+        opacity: 0.9;
+        /* text-align: center; */
+      }
+
+      .footer h2 {
+        font-size: 18px;
+        font-weight: 400;
+        margin-bottom: 30px;
+      }
+
+      .footer .col {
+        flex-basis: 25%;
+        flex-grow: 1;
+        margin-bottom: 20px;
+      }
+
+      .footer .col a {
+        display: block;
+        color: #777;
+        font-size: 14px;
+        margin-bottom: 10px;
+        text-decoration: none;
+      }
+
+      .footer .row {
+        align-items: flex-start;
+        padding: 10px 0px;
+       justify-content:  space-evenly;
+      }
+
+      .footer .lang-btn {
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 3px;
+      }
+      .lang-btn {
+        display: inline-flex;
+        align-items: center;
+        background: transparent;
+        border: 1px solid #fff;
+        padding: 7px 10px;
+      }
+
+      .lang-btn img {
+        width: 10px;
+        margin-left: 10px;
+      }
+
+      .fa-globe {
+        color: #fff;
+        width: 10px;
+        margin-right: 10px;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        flex-wrap: wrap;
+        padding: 50px 0;
+        justify-content:  space-evenly;
+      }
+        @media screen and (max-width:700px) {
+            .search-container{
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <div class="left">
+                <a href="./index.html"><img src="./img/Netflix.png" alt="image"></a>
+            </div>
+                <div id="searchBox" class="search-container">
+                    <div class="search"></div>
+                    <div class="input-box">
+                        <input type="text" placeholder="Search...">
+                        <div class="close"></div>
+                    </div>
+                </div>
+                <div class="right">
+                    <a href="./idPage.html"><img src="./img/green.jpg" alt="user"></a>
+            </div>
+        </nav>
+        <div class="movie">
+            <div class="movieImg">
+                <div class="movieName">
+                    <h1>Stranger Things</h1>
+                    <div class="btn">
+                        <button> <i class="fa fa-play"></i> Play</button>
+                        <button> <i class="fa fa-plus"></i> My List</button>
+                    </div>
+                    <div class="moviesDesc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, ipsum
+                        voluptatibus pariatur id culpa hic corporis eos quae vero. Perspiciatis, in? Corrupti ullam id
+                        voluptatibus, minus provident nulla exercitationem saepe!</div>
+                </div>
+            </div>
+        </div>
+        <div class="first">
+            <h1>Top picks for you</h1>
+            <div class="ex1">
+                <div>
+                    <img src="https://www.moviemeter.com/images/cover/1152000/1152626.jpg?cb=1679336707">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://www.digitaltrends.com/wp-content/uploads/2023/04/i4ecMHJQpclIEr4mh5uzjWr38GC.jpg?p=1#038;p=1.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/81198916.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70262639.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://www.digitaltrends.com/wp-content/uploads/2022/05/cbcml2h866snqhar8j9dq9r4ud6.jpg?p=1#038;p=1.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://www.digitaltrends.com/wp-content/uploads/2023/01/xo0fgAUoEeVQ7KsKeMWypyglvnf.jpg?p=1#038;p=1.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://www.digitaltrends.com/wp-content/uploads/2022/06/1SOiUTDnwW9gU4GzSIsOCQUlHJF.jpg?p=1#038;p=1.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://www.digitaltrends.com/wp-content/uploads/2022/12/ga8R3OiOMMgSvZ4cOj8x7prUNYZ.jpg?p=1#038;p=1.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://www.digitaltrends.com/wp-content/uploads/2022/02/voxl654m7p36y8flu8oqd7dfwwk.jpg?p=1#038;p=1.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://www.digitaltrends.com/wp-content/uploads/2022/11/vDGr1YdrlfbU9wxTOdpf3zChmv9.jpg?p=1#038;p=1.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://www.digitaltrends.com/wp-content/uploads/2022/11/vx1u0uwxdlhV2MUzj4VlcMB0N6m.jpg?p=1#038;p=1.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://www.digitaltrends.com/wp-content/uploads/2022/12/tVxDe01Zy3kZqaZRNiXFGDICdZk.jpg?p=1#038;p=1.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70242804.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://images-cdn.ubuy.co.in/63ef0a397f1d781bea0a2464-star-wars-rogue-one-movie-poster.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://m.media-amazon.com/images/I/71Jxq2p5YWL._AC_UF1000,1000_QL80_.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="first">
+            <h1>Horror Movies</h1>
+            <div class="ex1">
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/81238605.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://www.joblo.com/wp-content/uploads/2023/04/insidious-the-red-door-featured.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+
+                </div>
+                <div>
+                    <img src="https://art-s.nflximg.net/aef0c/c3484c67d097bb7c1d827315d05b3fa73d4aef0c.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70300205.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://m.media-amazon.com/images/I/71Y7j5jfRfL._AC_UF1000,1000_QL80_.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/81186806.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/en/f/ff/The_Ritual_UK_poster.png">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/en/0/0d/1922_%282017_film%29.png">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://m.media-amazon.com/images/M/MV5BMTY1NDk0NjI4MV5BMl5BanBnXkFtZTgwNjUyNzMwNjM@._V1_.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://m.media-amazon.com/images/M/MV5BMTA3NzkzMDUxODBeQTJeQWpwZ15BbWU4MDM0ODc5ODcz._V1_.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbjit-wK8aZK9nYf9CChhsR_ZhkfoOuXGNRojxwwJMeg&s">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/14546747.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://m.media-amazon.com/images/M/MV5BMTUyNzkwMzAxOF5BMl5BanBnXkFtZTgwMzc1OTk1NjE@._V1_.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/81582061.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/80117824.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="first">
+            <h1>Kids Section</h1>
+            <div class="ex1">
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/80221639.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/80189213.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/80108238.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/en/1/1a/The_Little_Prince_%282015_film%29_poster.png">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/80094319.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/81198527.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://m.media-amazon.com/images/M/MV5BOGE1MWRiYzctYjQ3MC00YWI1LTg1MTgtMjUwYzRmMzI0NGIwXkEyXkFqcGdeQXVyMTQ3NDcxMzg4._V1_.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://m.media-amazon.com/images/M/MV5BMjUwNTkzNTktMDkzYi00OGYxLThjZmUtMDFmOGRiYmQwMmE4XkEyXkFqcGdeQXVyMjUxMTY3ODM@._V1_.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70137742.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70273612.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://www.tvguide.com/a/img/catalog/provider/1/2/1-6981633884.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://m.media-amazon.com/images/M/MV5BNTdjZjBkMDMtODBlNi00N2E0LWE1OGItOTgxODNmMDkzNGJmXkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_FMjpg_UX1000_.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://m.media-amazon.com/images/M/MV5BNTI0ZjVhM2ItMmFkOS00ZmFiLTg4NGQtODJjNTZmMDYxMWMyXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://m.media-amazon.com/images/M/MV5BOTgxMDQwMDk0OF5BMl5BanBnXkFtZTgwNjU5OTg2NDE@._V1_FMjpg_UX1000_.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://m.media-amazon.com/images/M/MV5BMTY3NjY0MTQ0Nl5BMl5BanBnXkFtZTcwMzQ2MTc0Mw@@._V1_FMjpg_UX1000_.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="first">
+            <h1>Animated Movies</h1>
+            <div class="ex1">
+                <div>
+                    <img
+                        src="https://m.media-amazon.com/images/M/MV5BMWYwOThjM2ItZGYxNy00NTQwLWFlZWEtM2MzM2Q5MmY3NDU5XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/en/a/a0/The_Willoughbys_Theatrical_release_poster.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/81199142.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://m.media-amazon.com/images/M/MV5BMjdkZjNjNDItYzc4MC00NTkxLTk1MWEtY2UyZjY5MjUwNDNkXkEyXkFqcGdeQXVyMTA1OTcyNDQ4._V1_.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/80221640.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/81198902.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70120612.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70102569.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://occ-0-2794-2218.1.nflxso.net/dnm/api/v6/evlCitJPPCVCry0BZlEFb5-QjKc/AAAABe-G4zRvikq0e_C0sZjbWCNnoZzlyVSU7ctBuOilpc5wbcPKk0BOddFmqsWCEWRF1nxMuw2E2cn0BR8GTDM_55FUbm5M.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/81021806.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://m.media-amazon.com/images/M/MV5BODBjOTAzZmMtNGJkOC00M2M3LWI1MTctZjZlMzdiODBkMzc0XkEyXkFqcGdeQXVyMjM4NTM5NDY@._V1_.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/81044813.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/80079258.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://m.media-amazon.com/images/M/MV5BNTU3MTI0NDE1M15BMl5BanBnXkFtZTgwMzU2ODI5NDE@._V1_.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://occ-0-869-586.1.nflxso.net/dnm/api/v6/WNk1mr9x_Cd_2itp6pUM7-lXMJg/AAAABej_GPYjRZOcZuwuzCMhOSKl6j4NAhu3aT7DXiZ8UEGcCoxkzHlTMGFPSpx65qAaN35v9aHqFlXcItjfVeuSz-uvCa4O71R22hwp.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="first">
+            <h1>Crime Movies</h1>
+            <div class="ex1">
+                <div>
+                    <img src="https://i.redd.it/fummb847tgb81.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70002022.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70044689.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70020509.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70127227.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70064122.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70019012.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/902003.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/60011660.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70060009.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/60004086.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/383466.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/60021234.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/1084379.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/1151721.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="first">
+            <h1>Comedy Movies</h1>
+            <div class="ex1">
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70113002.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70184047.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70208247.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70058023.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70093991.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70264796.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/60034551.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70123542.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70097582.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/60023650.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70003227.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/384406.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70043038.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/60002777.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/60000361.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="first">
+            <h1>Sci-Fi Movies</h1>
+            <div class="ex1">
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70131314.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/20557937.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/80185760.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/81104905.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/60024058.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/80029196.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/1038926.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/1154386.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70274337.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70305903.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/80117799.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/80058399.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/80144444.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70109892.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/80025919.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="first">
+            <h1>Suspensful Movies</h1>
+            <div class="ex1">
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/879522.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/26797528.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/950149.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/60021097.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/959008.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/60022315.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/60000397.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/60010202.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkixbrrQPHBFVK--7w9sGJ1ZBwSoTkbiQDejRc695GlA&s">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70047095.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/60024914.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/60036242.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/60034800.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70095139.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/70273235.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="first">
+            <h1>Adventurous Movies</h1>
+            <div class="ex1">
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/80082755.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://m.media-amazon.com/images/M/MV5BNDJiZDliZDAtMjc5Yy00MzVhLThkY2MtNDYwNTQ2ZTM5MDcxXkEyXkFqcGdeQXVyMDA4NzMyOA@@._V1_.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+
+                </div>
+                <div>
+                    <img src="https://www.dvdsreleasedates.com/posters/800/P/Project-Power-2020-movie-poster.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://m.media-amazon.com/images/M/MV5BNzE2ZjQxNjEtNmI2ZS00ZmU0LTg4M2YtYzVhYmRiYWU0YzI1XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_FMjpg_UX1000_.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://www.newdvdreleasedates.com/images/posters/large/bird-box-2018.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://m.media-amazon.com/images/M/MV5BODU4MzM2MDAxMl5BMl5BanBnXkFtZTgwNDEzNjM0NzM@._V1_.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://www.newdvdreleasedates.com/images/posters/enola-holmes-2020.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://m.media-amazon.com/images/M/MV5BMzRlMTcwODMtZjhjZS00NWI1LThkMDUtOTAwNzM1ZmU3ZDExXkEyXkFqcGdeQXVyNjY1MTg4Mzc@._V1_.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://images.static-bluray.com/products/20/66198_2_large.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://www.newdvdreleasedates.com/images/posters/the-king-2019.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/80064516.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://assets.nflxext.com/us/boxshots/hd1080/80104198.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img
+                        src="https://m.media-amazon.com/images/M/MV5BMzA5MjNjODEtOWYxYi00OTdmLTlhNTAtN2VhMTMxNWJjM2ZmXkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://www.dvdsreleasedates.com/posters/800/T/The-Highwaymen-2019-movie-poster.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+                <div>
+                    <img src="https://images.static-bluray.com/products/20/62059_1_large.jpg">
+                    <button class="heart"><i class="fa fa-heart"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <h2>Questions? Call 000-000-000-0000</h2>
+
+        <div class="row">
+          <div class="col">
+            <a href="#">FAQ</a>
+            <a href="#">Investor Relations</a>
+            <a href="#">Privacy</a>
+            <a href="#">Speed Test</a>
+          </div>
+          <div class="col">
+            <a href="#">Help Centre</a>
+            <a href="#">Jobs</a>
+            <a href="#">Cookie Preferences</a>
+            <a href="#">Legal Notices</a>
+          </div>
+          <div class="col">
+            <a href="#">Account</a>
+            <a href="#">Ways to Watch</a>
+            <a href="#">Corporate Information</a>
+            <a href="#">Only on Netflix</a>
+          </div>
+          <div class="col">
+            <a href="#">Media Centre</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Contact Us</a>
+          </div>
+        </div>
+
+        <button class="lang-btn">
+          <i class="fa-solid fa-globe"></i> English
+          <img src="./Assets/down-icon.png" />
+        </button>
+        <br />
+        <p class="copyright-text">Netflix India</p>
+      </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById("searchBox").addEventListener("click", function (event) {
+                arr = this.className.split(" ");
+                if (arr.indexOf("active") == -1) {
+                    this.className += " active";
+                }
+                this.getElementsByTagName("INPUT")[0].focus();
+            });
+
+            document.getElementById("searchBox").getElementsByClassName("search")[0].addEventListener("click", function (event) {
+                var parent = this.parentElement; //searchBox element;
+                var arr = parent.className.split(" ");
+                if (arr.indexOf("active") != -1) {
+                    var input = parent.getElementsByTagName("INPUT")[0];
+                    input.value = "";
+                    var classList = parent.className;
+                    classList = classList.replace(/\bactive\b/g, "").trim();
+                    parent.className = classList;
+                    event.preventDefault();
+                    event.stopPropagation();
+                    event.stopImmediatePropagation();
+                }
+            });
+        }, false);
+    </script>
+</body>
+
+</html>
